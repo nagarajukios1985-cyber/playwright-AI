@@ -37,37 +37,54 @@ git remote add origin https://github.com/OWNER/REPO.git
 ```bash
 git remote add origin https://$GIT_TOKEN@<url>
 ```
- ## 5️⃣ Push a branch and set its upstream
-  When you want to push the current branch and have it track the remote branch, run:
 
-  ```bash
-  git push --set-upstream origin <branch>
+## 4️⃣ Add files, commit, and push
 
-## 4️⃣ Push the initial commit
+### Add all project files
+```bash
+git add .
+```
+
+### Create a commit with a message
+```bash
+git commit -m "initial code with custom agent"
+```
+
+### Push code to the main branch
 ```bash
 git push -u origin main
 ```
 
-## 5️⃣ Pull later
+### Quick one-liner
+```bash
+git add . && git commit -m "<msg>" && git push -u origin $(git rev-parse --abbrev-ref HEAD)
+```
+
+## 5️⃣ Push the initial commit
+```bash
+git push -u origin main
+```
+
+## 6️⃣ Pull later
 ```bash
 git pull origin <new-branch>
 ```
 
-## 6️⃣ Create a new branch
+## 7️⃣ Create a new branch
 ```bash
 git checkout -b <new-branch>
 git push -u origin <new-branch>
 ```
 
-## 7️⃣ Refresh the token (if it expires)
+## 8️⃣ Refresh the token (if it expires)
 If you get an authentication error, re‑run **step 1️⃣** to update `$GIT_TOKEN` and retry.
 
-## 8️⃣ Safety notes
+## 9️⃣ Safety notes
 - **Never** commit the token.
 - Keep it secret.
 - Use a PAT with `repo` scope for private repos.
 
-## Quick one‑liner for the whole workflow
+## 🔟 Quick one‑liner for the whole workflow
 ```bash
 read -sp "Enter your GitHub PAT: " GIT_TOKEN && echo && \
  echo "# Playwright-Demo-AI" > README.md && \
