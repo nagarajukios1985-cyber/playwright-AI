@@ -13,10 +13,3 @@ test('search button should be visible', async ({ page }) => {
   await expect(searchButton).toBeVisible();
 });
 
-
-
-test('intentional failure test', async ({ page }) => {
-  await page.goto('https://www.airbnb.co.in/');
-  // This assertion is designed to fail
-  await expect(page).toHaveTitle(/NonExistentTitle/);
-});
