@@ -1,5 +1,4 @@
-import { defineConfig } from '@playwright/test';
-import path from 'path';
+import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
@@ -8,10 +7,7 @@ export default defineConfig({
 
   reporter: [
     ['list'],
-
-    ['json', {
-      outputFile: 'artifacts/results.json',
-    }],
+    ['json', { outputFile: 'artifacts/results.json' }],
   ],
 
   use: {
@@ -19,4 +15,11 @@ export default defineConfig({
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
   },
+
+  projects: [
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
+    },
+  ],
 });
