@@ -5,14 +5,17 @@ export default defineConfig({
 
   outputDir: 'artifacts/test-results',
 
-  use: {
-    headless: true,
-  },
-
   reporter: [
+    ['list'],
+
+    // ✅ ONLY your custom reporter
     ['./reporter/ArtifactHtmlReporter', {
       outputFile: 'artifacts/test-report.md',
       outputHtml: 'artifacts/test-report.html',
     }],
   ],
+
+  use: {
+    headless: true,
+  },
 });
