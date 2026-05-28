@@ -50,36 +50,41 @@ git add .
 git commit -m "initial code with custom agent"
 ```
 
-### Push code to the main branch
+### Push to the current branch (dynamic)
 ```bash
-git push -u origin main
+git push -u origin $(git rev-parse --abbrev-ref HEAD)
 ```
 
-### Quick one-liner
+### Push to a specific branch
+```bash
+git push -u origin <branch-name>
+```
+
+### Quick one-liner for current branch
 ```bash
 git add . && git commit -m "<msg>" && git push -u origin $(git rev-parse --abbrev-ref HEAD)
 ```
 
-## 5️⃣ Push the initial commit
+### Push to multiple branches
 ```bash
-git push -u origin main
+git push -u origin main && git push -u origin develop
 ```
 
-## 6️⃣ Pull later
+## 5️⃣ Pull later
 ```bash
 git pull origin <new-branch>
 ```
 
-## 7️⃣ Create a new branch
+## 6️⃣ Create a new branch
 ```bash
 git checkout -b <new-branch>
 git push -u origin <new-branch>
 ```
 
-## 8️⃣ Refresh the token (if it expires)
+## 7️⃣ Refresh the token (if it expires)
 If you get an authentication error, re‑run **step 1️⃣** to update `$GIT_TOKEN` and retry.
 
-## 9️⃣ Safety notes
+## 8️⃣ Safety notes
 - **Never** commit the token.
 - Keep it secret.
 - Use a PAT with `repo` scope for private repos.
