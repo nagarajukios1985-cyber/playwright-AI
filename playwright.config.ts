@@ -8,14 +8,15 @@ export default defineConfig({
   reporter: [
     ['list'],
 
-    // ✅ ONLY your custom reporter
-    ['./reporter/ArtifactHtmlReporter', {
-      outputFile: 'artifacts/test-report.md',
+    ['./reporter/ArtifactHtmlReporter.js', {
       outputHtml: 'artifacts/test-report.html',
-    }],
+      outputFile: 'artifacts/test-report.md'
+    }]
   ],
 
   use: {
     headless: true,
-  },
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure'
+  }
 });
