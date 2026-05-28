@@ -8,7 +8,7 @@ export default defineConfig({
   reporter: [
     ['list'],
 
-    ['./reporter/ArtifactHtmlReporter.js', {
+    ['./reporter/ArtifactHtmlReporter.cjs', {
       outputHtml: 'artifacts/test-report.html',
       outputFile: 'artifacts/test-report.md'
     }]
