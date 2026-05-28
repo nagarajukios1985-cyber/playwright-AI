@@ -1,8 +1,8 @@
 # Playwright Test Report
 
 Status: failed
-Started: 2026-05-28T06:05:01.426Z
-Finished: 2026-05-28T06:05:16.939Z
+Started: 2026-05-28T17:33:01.375Z
+Finished: 2026-05-28T17:33:13.742Z
 
 ## Summary
 
@@ -17,17 +17,17 @@ Finished: 2026-05-28T06:05:16.939Z
 ### PASSED - chromium > example.spec.ts > basic sanity check
 
 Location: tests/example.spec.ts:3:1
-Duration: 5910ms
+Duration: 4160ms
 
 ### PASSED - chromium > example.spec.ts > search button should be visible
 
 Location: tests/example.spec.ts:10:1
-Duration: 2744ms
+Duration: 1103ms
 
 ### FAILED - chromium > example.spec.ts > intentional failure test
 
 Location: tests/example.spec.ts:18:1
-Duration: 6216ms
+Duration: 6247ms
 
 Error:
 ```
