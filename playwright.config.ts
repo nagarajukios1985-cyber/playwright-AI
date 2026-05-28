@@ -26,9 +26,8 @@ export default defineConfig({
   // -----------------------------------------------------------------
   // Playwright expects each reporter entry to be a tuple [modulePath, options]
   reporter: [
-    ['./reporter/ArtifactHtmlReporter', {
-      outputFile: 'artifacts/test-report.md',
-      outputHtml: 'artifacts/test-report.html',
-    }],
-  ],
+  ['list'],
+  ['html', { outputFolder: 'playwright-report' }],
+  ['./reporter/ArtifactHtmlReporter'],
+],
 });
