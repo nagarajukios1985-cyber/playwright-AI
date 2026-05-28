@@ -1,27 +1,29 @@
-import { defineConfig } from '@playwright/test';
-import path from 'path';
+import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
-
   testDir: './tests',
 
-  outputDir: 'artifacts/test-results',
+  outputDir: 'test-results',
 
-  reporter: [
-    ['list'],
-
-    ['json', {
-      outputFile: path.join('artifacts', 'results.json'),
-    }],
-
-    ['./reporter/ArtifactHtmlReporter', {
-      outputFile: path.join('artifacts', 'test-report.md'),
-      outputHtml: path.join('artifacts', 'test-report.html'),
-    }],
-  ],
+  retries: 0,
 
   use: {
     headless: true,
+    screenshot: 'only-on-failure',
     video: 'retain-on-failure',
+    trace: 'on-first-retry',
   },
+
+  projects: [
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
+    },
+  ],
+
+  reporter: [
+    ['list'],
+    ['html', { outputFolder: 'playwright-report', open: 'never' }],
+    ['json', { outputFile: 'test-results/results.json' }],
+  ],
 });
