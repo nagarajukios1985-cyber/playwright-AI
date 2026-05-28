@@ -1,33 +1,38 @@
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
-  // Remove default report folder before and after the run
-  // Clean up the default report folder before and after the run
-  globalSetup: './setup/global-setup',
-  globalTeardown: './setup/global-teardown',
+
   testDir: './tests',
-  timeout: 30_000,
+
+  outputDir: 'artifacts/test-results',
+
+  reporter: [
+    ['list'],
+
+    // ✅ SAFE: Playwright official HTML report (Jenkins-friendly fallback)
+    ['html', {
+      outputFolder: 'playwright-report',
+      open: 'never',
+    }],
+
+    // ✅ Your custom reporter (kept but now SAFE as secondary)
+    ['./reporters/artifact-html-reporter.js', {
+      outputFile: 'artifacts/test-report.md',
+      outputHtml: 'artifacts/test-report.html',
+    }],
+
+    // ✅ CI-friendly machine readable output
+    ['json', {
+      outputFile: 'artifacts/results.json',
+    }],
+  ],
+
   use: {
     headless: true,
-    // Adding --no-sandbox avoids macOS sandbox permission errors in CI/containers
-    launchOptions: {
-      args: ['--no-sandbox'],
-    },
+
+    video: 'retain-on-failure',
+    screenshot: 'only-on-failure',
+    trace: 'on-first-retry',
   },
-  // Default project using Google Chrome (Chromium)
-  projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-    },
-  ],
-  // -----------------------------------------------------------------
-  // Use only the custom HTML reporter (no built‑in reporters).
-  // -----------------------------------------------------------------
-  // Playwright expects each reporter entry to be a tuple [modulePath, options]
-  reporter: [
-  ['list'],
-  ['html', { outputFolder: 'playwright-report' }],
-  ['./reporter/ArtifactHtmlReporter'],
-],
+
 });
