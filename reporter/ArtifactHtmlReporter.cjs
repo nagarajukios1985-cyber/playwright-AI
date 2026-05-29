@@ -109,3 +109,4 @@ ${this.results.tests.map(t =>
 }
 
 module.exports = ArtifactHtmlReporter;
+
