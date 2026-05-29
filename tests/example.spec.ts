@@ -13,3 +13,10 @@ test('search button should be visible', async ({ page }) => {
   await expect(searchButton).toBeVisible();
 });
 
+
+test('search button  be visible', async ({ page }) => {
+  await page.goto('https://www.airbnb.co.in/');
+  const searchButton = page.getByRole('button', { name: /Search/i });
+  await expect(searchButton).toBeVisible();
+});
+
