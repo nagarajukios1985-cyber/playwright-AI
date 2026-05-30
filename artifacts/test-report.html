@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Playwright Dashboard</title>
+  <style>
+    body { font-family: Arial; background:#0f172a; color:#fff; padding:20px; }
+    .card { display:inline-block; padding:15px; margin:10px; background:#1e293b; border-radius:12px; }
+    .passed { color:#22c55e; }
+    .failed { color:#ef4444; }
+    table { width:100%; margin-top:20px; border-collapse: collapse; }
+    th, td { padding:10px; border-bottom:1px solid #334155; }
+  </style>
+</head>
+<body>
+
+<h1>🧪 Playwright Dashboard</h1>
+
+<div class="card">Total: 2</div>
+<div class="card passed">Passed: 1</div>
+<div class="card failed">Failed: 1</div>
+<div class="card">Skipped: 0</div>
+
+<table>
+  <tr>
+    <th>Status</th>
+    <th>Test</th>
+    <th>File</th>
+    <th>Duration</th>
+  </tr>
+
+  
+    <tr>
+      <td class="passed">PASSED</td>
+      <td>basic sanity check</td>
+      <td>/Users/nagaraju.kankanala/Documents/playwright-AI/tests/example.spec.ts</td>
+      <td>2286ms</td>
+    </tr>
+  
+    <tr>
+      <td class="failed">FAILED</td>
+      <td>search button should be visible</td>
+      <td>/Users/nagaraju.kankanala/Documents/playwright-AI/tests/example.spec.ts</td>
+      <td>6889ms</td>
+    </tr>
+  
+</table>
+
+</body>
+</html>

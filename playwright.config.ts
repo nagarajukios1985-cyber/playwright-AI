@@ -9,9 +9,9 @@ export default defineConfig({
     ['list'],
 
     ['./reporter/ArtifactHtmlReporter.cjs', {
+      outputFile: 'artifacts/test-report.md',
       outputHtml: 'artifacts/test-report.html',
-      outputFile: 'artifacts/test-report.md'
-    }]
+    }],
   ],
 
   use: {
