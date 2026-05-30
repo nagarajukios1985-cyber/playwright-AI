@@ -50,7 +50,7 @@ function limitText(text, maxLength = 1000) {
 }
 
 const INSPECTION_ACTIONS = new Set(["list_files", "read_file"]);
-const MUTATION_ACTIONS = new Set(["create_file","update_file","replace_file","remove_test","create_folder","run_command"]);
+const MUTATION_ACTIONS = new Set(["create_file", "update_file", "replace_file", "remove_test", "create_folder", "run_command"]);
 
 async function createPlan(input, observations = []) {
   const plan = await callAiTool("create_plan", { input, observations });
@@ -71,8 +71,30 @@ async function executePlan(plan) {
         if (isPlaywrightTestCommand(step.command)) {
           await callCommandTool("clean_artifacts", {});
         }
-        const result = await callCommandTool("run_command", { command: step.command });
-        observations.push({ action: step.action, command: step.command, success: result.success, stdout: limitText(result.stdout), stderr: limitText(result.stderr), error: result.error });
+
+        console.log("\n🚀 EXEC:", step.command);
+
+        const result = await callCommandTool("run_command", {
+          command: step.command
+        });
+
+        console.log("\n📤 STDOUT:\n", result.stdout);
+        console.log("\n📥 STDERR:\n", result.stderr);
+
+        const success =
+          result.success &&
+          !result.stderr?.toLowerCase().includes("error") &&
+          !result.stderr?.toLowerCase().includes("denied");
+
+        observations.push({
+          action: step.action,
+          command: step.command,
+          success,
+          stdout: limitText(result.stdout),
+          stderr: limitText(result.stderr),
+          error: result.error || null
+        });
+
         break;
       }
       case "create_file": {
